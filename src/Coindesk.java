@@ -44,5 +44,13 @@ public class Coindesk {
 		default: return 0;
 		}
 	}
+	
+	/**
+	 * @return hour api was accessed
+	 */
+	public int getHour() {
+		String hour = time.updatedISO.substring(11, 13);
+		return Integer.parseInt(hour);
+	}
 
 }

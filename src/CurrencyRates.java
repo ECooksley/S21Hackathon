@@ -1,6 +1,6 @@
 
 /**
- * Does all API reading and collects all currency data in one place.
+ * Does all API reading and collects all currency data and time of access in one place.
  * @author David Cooksley
  *
  */
@@ -9,6 +9,7 @@ public class CurrencyRates {
 	private float GBP;
 	private float EUR;
 	private float CAD;
+	private int hour;
 	public static final String COINDESK_URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
 	public static final String CAD_URL = "https://api.coindesk.com/v1/bpi/currentprice/CAD.json";	
 
@@ -24,6 +25,7 @@ public class CurrencyRates {
 		USD = coindesk.getRate("USD");
 		GBP = coindesk.getRate("GBP");
 		EUR = coindesk.getRate("EUR");
+		hour = coindesk.getHour();
 		apiReader = new CoindeskAPIReader(CAD_URL); //CAD data is on second API page, so second object is necessary
 		json = apiReader.getAPIData();
 		jsonParser = new JsonParser(json);
@@ -43,5 +45,12 @@ public class CurrencyRates {
 		case "CAD": return CAD;
 		default: return 0;
 		}
+	}
+	
+	/**
+	 * @return int: hour api was accessed.
+	 */
+	public int getHour() {
+		return hour;
 	}
 }
