@@ -18,8 +18,6 @@ import java.util.Scanner;
 public class CoindeskAPIReader {
 	
 	private URL url;
-	private static final String COINDESK_URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
-	private static final String CAD_URL = "https://api.coindesk.com/v1/bpi/currentprice/CAD.json";	
 	private HttpURLConnection conn;
 	private String apiData;
 	
@@ -42,7 +40,7 @@ public class CoindeskAPIReader {
 				apiData = sc.nextLine();
 				sc.close();
 			}
-			System.out.println(apiData);
+			//System.out.println(apiData);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
