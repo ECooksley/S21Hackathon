@@ -43,10 +43,6 @@ public class CryptoMiner {
 		return result;
 	}
 	
-	public class CalculatedData {
-		public float time; //h
-		public float cost; //CAD
-	}
 	public int getNumberOfMiners() {
 		return miners.length;
 	}
