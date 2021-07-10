@@ -12,16 +12,18 @@ public class CurrencyRates {
 	private int hour;
 	public static final String COINDESK_URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
 	public static final String CAD_URL = "https://api.coindesk.com/v1/bpi/currentprice/CAD.json";	
-
+	private CoindeskAPIReader apiReader;
+	private JsonParser jsonParser;
+	private Coindesk coindesk;
 	
 	/**
 	 * Accesses APIs and pulls currency rate data.
 	 */
 	public CurrencyRates() {
-		CoindeskAPIReader apiReader = new CoindeskAPIReader(COINDESK_URL);
+		apiReader = new CoindeskAPIReader(COINDESK_URL);
 		String json = apiReader.getAPIData();
-		JsonParser jsonParser = new JsonParser(json);
-		Coindesk coindesk = jsonParser.getCoindesk();
+		jsonParser = new JsonParser(json);
+		coindesk = jsonParser.getCoindesk();
 		USD = coindesk.getRate("USD");
 		GBP = coindesk.getRate("GBP");
 		EUR = coindesk.getRate("EUR");
