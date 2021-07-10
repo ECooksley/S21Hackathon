@@ -2,8 +2,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 public class Testing {
-
 	public static void main(String[] args) {
+		int test;
+		test = 10;
+		test +=10;
 		try {
 			URL url = new URL("https://api.coindesk.com/v1/bpi/currentprice.json");
 		

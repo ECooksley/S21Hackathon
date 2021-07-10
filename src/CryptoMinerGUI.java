@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import CryptoMiner.CalculatedData;
+
 public class CryptoMinerGUI extends JFrame implements ActionListener {
 	private JLabel bitcoin = new JLabel("How much bitcoin would you like to mine?");
 	private JTextField inField;
@@ -15,6 +17,7 @@ public class CryptoMinerGUI extends JFrame implements ActionListener {
 	private JSpinner spinner;
 	private JSeparator separator;
 	private CryptoMiner cryptoMiner;
+	private JComboBox comboBox;
 	
 	
 	public CryptoMinerGUI(String title) {
@@ -42,9 +45,8 @@ public class CryptoMinerGUI extends JFrame implements ActionListener {
 		contentPane.add("North", bitcoinPanel);
 		
 		String[] currency = {"BTC", "USD", "GBP", "EUR", "CAD"};
-		JComboBox comboBox = new JComboBox(currency);
+		comboBox = new JComboBox(currency);
 		comboBox.setSelectedIndex(0);
-		comboBox.addActionListener(this);
 		bitcoinPanel.add(comboBox);
 		contentPane.add("South", outputPanel);
 		
@@ -78,7 +80,10 @@ public class CryptoMinerGUI extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == calculate) {
+			CalculatedData result = cryptoMiner.calcData(Float.parseFloat(inField.getText()), (Integer) spinner.getValue(), (String) comboBox.getSelectedItem());
 			
+			hourDisplay.setText("Hours Taken: " + result.time + "\tEnergy Cost: " + result.cost + " CAD");
+			amountDisplay.setText("");
 		}
 	}
 
