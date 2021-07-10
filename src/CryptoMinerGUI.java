@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import CryptoMiner.CalculatedData;
-
 public class CryptoMinerGUI extends JFrame implements ActionListener {
 	private JLabel bitcoin = new JLabel("How much bitcoin would you like to mine?");
 	private JTextField inField;
@@ -80,10 +78,20 @@ public class CryptoMinerGUI extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == calculate) {
-			CalculatedData result = cryptoMiner.calcData(Float.parseFloat(inField.getText()), (Integer) spinner.getValue(), (String) comboBox.getSelectedItem());
-			
-			hourDisplay.setText("Hours Taken: " + result.time + "\tEnergy Cost: " + result.cost + " CAD");
-			amountDisplay.setText("");
+			if ((Integer) spinner.getValue() != 0) {	
+				CalculatedData result = cryptoMiner.calcData(Float.parseFloat(inField.getText()), (Integer) spinner.getValue(), (String) comboBox.getSelectedItem());
+				String hours = String.format("Hours Taken: %.2f", result.time);
+				String energy = String.format("Energy Cost: %.2f", result.cost);
+				hourDisplay.setText(hours +  "\t\t\t" + energy + " CAD");
+				String btc = String.format("\n\tBTC: %.6f", result.coinsBTC);
+				String usd = String.format("\n\tUSD: %.2f", result.coinsUSD);
+				String gbp = String.format("\n\tGBP: %.2f", result.coinsGBP);
+				String eur = String.format("\n\tEUR: %.2f", result.coinsEUR);
+				String cad = String.format("\n\tCAD: %.2f", result.coinsCAD);
+				amountDisplay.setText("Amount: " + btc + usd + gbp + eur + cad);
+			} else {
+				hourDisplay.setText("Cannot mine without any miners.");
+			}
 		}
 	}
 
