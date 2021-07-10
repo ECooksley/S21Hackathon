@@ -80,10 +80,15 @@ public class CryptoMinerGUI extends JFrame implements ActionListener {
 		if (e.getSource() == calculate) {
 			if ((Integer) spinner.getValue() != 0) {	
 				CalculatedData result = cryptoMiner.calcData(Float.parseFloat(inField.getText()), (Integer) spinner.getValue(), (String) comboBox.getSelectedItem());
-				
-				hourDisplay.setText("Hours Taken: " + result.time + "\t\t\tEnergy Cost: " + result.cost + " CAD");
-				amountDisplay.setText("Amount: \n\tBitcoin: " + result.coinsBTC + "\n\tUSD: " + result.coinsUSD + "\n\tGBP: "
-						+ result.coinsGBP + "\n\tEUR: " + result.coinsEUR + "\n\tCAD: " + result.coinsCAD);
+				String hours = String.format("Hours Taken: %.2f", result.time);
+				String energy = String.format("Energy Cost: %.2f", result.cost);
+				hourDisplay.setText(hours +  "\t\t\t" + energy + " CAD");
+				String btc = String.format("\n\tBTC: %.6f", result.coinsBTC);
+				String usd = String.format("\n\tUSD: %.2f", result.coinsUSD);
+				String gbp = String.format("\n\tGBP: %.2f", result.coinsGBP);
+				String eur = String.format("\n\tEUR: %.2f", result.coinsEUR);
+				String cad = String.format("\n\tCAD: %.2f", result.coinsCAD);
+				amountDisplay.setText("Amount: " + btc + usd + gbp + eur + cad);
 			} else {
 				hourDisplay.setText("Cannot mine without any miners.");
 			}
