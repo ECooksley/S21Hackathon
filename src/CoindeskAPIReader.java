@@ -18,17 +18,18 @@ import java.util.Scanner;
 public class CoindeskAPIReader {
 	
 	private URL url;
-	private static final String API_URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
+	private static final String COINDESK_URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
+	private static final String CAD_URL = "https://api.coindesk.com/v1/bpi/currentprice/CAD.json";	
 	private HttpURLConnection conn;
 	private String apiData;
 	
 
 	/**
-	 * Constructor. Pulls data from coindesk api and saves json string.
+	 * Constructor. Pulls data from api and saves json string.
 	 */
-	public CoindeskAPIReader() {
+	public CoindeskAPIReader(String URL) {
 		try {
-			url = new URL(API_URL);
+			url = new URL(URL);
 			
 			conn = (HttpURLConnection)url.openConnection();
 			conn.setRequestMethod("GET");
