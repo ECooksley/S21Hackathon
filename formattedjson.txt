@@ -23,7 +23,7 @@
 		},
 		"EUR"{
 			"code":"EUR",
-			symbol":"&euro;",
+			"symbol":"&euro;",
 			"rate":"28,504.1496",
 			"description":"Euro",
 			rate_float":28504.1496
