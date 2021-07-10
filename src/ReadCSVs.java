@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -35,7 +36,7 @@ public class ReadCSVs {
 				temp[i] = miners[i];
 			}
 			miners = temp;
-			
+			Arrays.sort(miners);
 			
 			sc1 = new Scanner(new File(powerCSV));
 			int hour = 0;
