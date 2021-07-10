@@ -2,7 +2,7 @@
 public class CryptoMiner {
 	private CurrencyRates rates;
 	private Miner[] miners;
-	private float[] powerRates;
+	private float[] powerRates; // CAD/kWh
 	public CryptoMiner() {
 		rates = new CurrencyRates();
 		ReadCSVs csvData = new ReadCSVs();
@@ -19,8 +19,10 @@ public class CryptoMiner {
 	public CalculatedData calcData(float amount, int num, String currency) {
 		CalculatedData result = new CalculatedData();
 		float coinsPerHour = 0;
+		float totalWattage = 0;
 		for (int i = 0; i < num; i++) {
 			coinsPerHour += miners[i].getRate();
+			totalWattage += miners[i].getWattage();
 		}
 		
 		float coins;
@@ -29,8 +31,15 @@ public class CryptoMiner {
 		result.time = coins/coinsPerHour;
 		int hours = (int)result.time;
 		float decimalTime = result.time - hours;
-		
-		for (hours)
+		float cost = 0;
+		int hour = rates.getHour();
+		for (int i = hours; i > 0; i--) {
+			cost += powerRates[hour]*totalWattage;
+			hour += 1;
+			hour = hour%24;
+		}
+		cost += powerRates[hour]*totalWattage*decimalTime;
+		result.cost = cost;
 		return result;
 	}
 	

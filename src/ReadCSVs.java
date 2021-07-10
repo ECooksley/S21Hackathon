@@ -45,7 +45,7 @@ public class ReadCSVs {
 				Scanner sc2 = new Scanner(line);
 				sc2.useDelimiter(",");
 				sc2.next(); //hour is captured by index
-				powerRates[hour] = sc2.nextFloat();
+				powerRates[hour] = (float)(sc2.nextFloat()/100.0); // CAD/kWh
 				hour++;
 				sc2.close();
 			}
