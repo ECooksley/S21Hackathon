@@ -12,14 +12,13 @@ public class GUITesting extends JFrame implements ActionListener {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JSpinner spinner;
-	private JButton btnNewButton;
 	private JSeparator separator;
 	
-	public GUITesting() {
+	public GUITesting(String title) {
 		inField = new JTextField(4);
 		inField.addActionListener(this);
 		
-		hourDisplay = new JTextArea("", 1, 20);
+		hourDisplay = new JTextArea("", 2, 20);
 		amountDisplay = new JTextArea("", 5, 20);
 		
 		calculate = new JButton("Calculate");
@@ -69,6 +68,8 @@ public class GUITesting extends JFrame implements ActionListener {
 	
 		panel_2.add(calculate, BorderLayout.CENTER);
 		
+		setSize(700,300);
+		setTitle(title);
 		setVisible(true);
 	}
 	
@@ -78,7 +79,7 @@ public class GUITesting extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new GUITesting();
+		new GUITesting("Bitcoin Calculator");
 	}
 
 }
