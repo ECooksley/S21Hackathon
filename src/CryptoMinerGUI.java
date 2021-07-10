@@ -3,8 +3,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import CryptoMiner.CalculatedData;
-
 public class CryptoMinerGUI extends JFrame implements ActionListener {
 	private JLabel bitcoin = new JLabel("How much bitcoin would you like to mine?");
 	private JTextField inField;
@@ -80,10 +78,15 @@ public class CryptoMinerGUI extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == calculate) {
-			CalculatedData result = cryptoMiner.calcData(Float.parseFloat(inField.getText()), (Integer) spinner.getValue(), (String) comboBox.getSelectedItem());
-			
-			hourDisplay.setText("Hours Taken: " + result.time + "\tEnergy Cost: " + result.cost + " CAD");
-			amountDisplay.setText("");
+			if ((Integer) spinner.getValue() != 0) {	
+				CalculatedData result = cryptoMiner.calcData(Float.parseFloat(inField.getText()), (Integer) spinner.getValue(), (String) comboBox.getSelectedItem());
+				
+				hourDisplay.setText("Hours Taken: " + result.time + "\t\t\tEnergy Cost: " + result.cost + " CAD");
+				amountDisplay.setText("Amount: \n\tBitcoin: " + result.coinsBTC + "\n\tUSD: " + result.coinsUSD + "\n\tGBP: "
+						+ result.coinsGBP + "\n\tEUR: " + result.coinsEUR + "\n\tCAD: " + result.coinsCAD);
+			} else {
+				hourDisplay.setText("Cannot mine without any miners.");
+			}
 		}
 	}
 
