@@ -40,6 +40,11 @@ public class CryptoMiner {
 		}
 		cost += powerRates[hour]*totalWattage*decimalTime;
 		result.cost = cost;
+		result.coinsBTC = coins;
+		result.coinsUSD = coins*rates.getRate("USD");
+		result.coinsGBP = coins*rates.getRate("GBP");
+		result.coinsEUR = coins*rates.getRate("EUR");
+		result.coinsCAD = coins*rates.getRate("CAD");
 		return result;
 	}
 	
