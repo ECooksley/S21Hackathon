@@ -4,11 +4,28 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+
+/**
+ * Reads data from coindesk API. URL accessing code from:
+ * 
+ * [1]"Getting JSON Data From a RESTful API Using JAVA", Medium, 2021. [Online]. 
+ * Available: https://medium.com/swlh/getting-json-data-from-a-restful-api-using-java-b327aafb3751. 
+ * [Accessed: 10- Jul- 2021]
+ * 
+ * @author David Cooksley
+ *
+ */
 public class CoindeskAPIReader {
+	
 	private URL url;
 	private static final String API_URL = "https://api.coindesk.com/v1/bpi/currentprice.json";
 	private HttpURLConnection conn;
-	String apiData;
+	private String apiData;
+	
+
+	/**
+	 * Constructor. Pulls data from coindesk api and saves json string.
+	 */
 	public CoindeskAPIReader() {
 		try {
 			url = new URL(API_URL);
@@ -31,7 +48,12 @@ public class CoindeskAPIReader {
 			e.printStackTrace();
 		}
 	}
-	public static void main(String[] args) {
-		new CoindeskAPIReader();
+	
+	/**
+	 * Getter for api data.
+	 * @return String: apiData
+	 */
+	public String getAPIData() {
+		return apiData;
 	}
 }
